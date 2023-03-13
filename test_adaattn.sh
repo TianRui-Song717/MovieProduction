@@ -1,0 +1,13 @@
+python ./AdaAttN/test.py \
+--content_path ./Video_Split/SceneImages/毕业季VLOG/ \
+--style_path ./AdaAttN/datasets/styles/ \
+--name AdaAttN \
+--model adaattn \
+--dataset_mode unaligned \
+--load_size 512 \
+--crop_size 512 \
+--image_encoder_path ./AdaAttN/checkpoints/vgg_normalised.pth \
+--gpu_ids 0 \
+--my_image_dir ./Video_Split/SceneSketch/VideoName \
+--skip_connection_3 \
+--shallow_layer
