@@ -39,11 +39,11 @@ def split_video(video_path, video_split_path, scene_save_path, img_save_path, sa
 
     if save_img == True:
         ret = scenedetect.scene_manager.save_images(scene_list, video=video, output_dir=img_save_path, num_images=num_images,
-          show_progress=True, image_name_template="Secne-$SCENE_NUMBER")
+          show_progress=True, image_name_template="$SCENE_NUMBER")
     # split and save video
     assert scenedetect.video_splitter.is_ffmpeg_available(), "Please install and check ffmpeg in your device"
     scenedetect.video_splitter.split_video_ffmpeg(video_path, scene_list=scene_list,
-        output_file_template = os.path.join(video_split_path, "Sence-$SCENE_NUMBER.mp4"),show_progress=True)
+        output_file_template = os.path.join(video_split_path, "$SCENE_NUMBER.mp4"),show_progress=True)
     return scene_list
 
 

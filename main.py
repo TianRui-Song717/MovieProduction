@@ -46,6 +46,6 @@ if __name__ == '__main__':
 
     # processing - Image to Sketch
     print("Start: Scene to Sketch image")
-    scene2sketch(scene_image_save_dir, scene_image_save_dir, sketch_style_dir)
+    scene2sketch(scene_image_save_dir, scene_sketch_save_dir, sketch_style_dir)
 
     # recognize attribute

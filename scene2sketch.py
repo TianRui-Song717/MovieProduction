@@ -947,6 +947,7 @@ def scene2sketch(sceneImagePath, sketchImagePath, style_path):
         dir_path = os.path.join(content_path, each_dir)
         create_dir_not_exist(os.path.join(save_path, each_dir))  # sketch save path
 
+        img_index = 0
         for each_image in os.listdir(dir_path):
             content_image_path = os.path.join(dir_path, each_image)
             content_image = Image.open(content_image_path).convert('RGB')
@@ -958,15 +959,17 @@ def scene2sketch(sceneImagePath, sketchImagePath, style_path):
             data = {
                 'c': content_input.unsqueeze(0),
                 's': style_input.unsqueeze(0),
-                'name': '{}_{}.png'.format(each_dir, each_image[:-4])
+                'name': '{}_{}.png'.format(each_dir, img_index)
             }
 
             model.set_input(data)  # unpack data from data loader
             model.test()           # run inference
             visuals = model.get_current_visuals()
-            print('processing image... %s' % (os.path.join(each_dir, each_image)))
+            if img_index % 10 == 0:
+                print('processing image... %s' % (os.path.join(each_dir, each_image)))
 
             im_data = visuals['cs']
             im = tensor2im(im_data)
             path = os.path.join(save_path, each_dir, data['name'])
             save_image(im, path, content_size)
+            img_index += 1
